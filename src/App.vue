@@ -2,9 +2,9 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import { watch } from 'vue';
-import XDrag from './components/XDrag.vue';
+import XDragContainer from './components/XDragContainer.vue';
 import XDragItem from './components/XDragItem.vue';
-import XMultiContainer from './components/XMultiContainer.vue';
+import XDragController from './components/XDragController.vue';
 import data from './demo';
 
 watch(
@@ -20,9 +20,9 @@ watch(
 	<div class="wrapper">
 		<p class="title"><img src="./assets/logo.png" /> Bulid with Vue 3</p>
 		<p>Open the Console to see changes in data</p>
-		<XMultiContainer>
-			<XDrag v-model="data" class="mul-container">
-				<XDragItem
+		<x-drag-controller>
+			<x-drag-container v-model="data" class="mul-container">
+				<x-drag-item
 					v-for="(dataItem, index) in data"
 					:key="dataItem.title"
 					:item-index="index"
@@ -30,8 +30,8 @@ watch(
 				>
 					<div>
 						<h3>{{ dataItem.title }}</h3>
-						<XDrag v-model="data[index].list">
-							<XDragItem
+						<x-drag-container v-model="data[index].list">
+							<x-drag-item
 								class="drag-item"
 								v-for="(item, index) in dataItem.list"
 								:key="item.title"
@@ -43,15 +43,15 @@ watch(
 									<div>{{ item.title }}</div>
 									<p>{{ item.content }}</p>
 								</div>
-							</XDragItem>
-						</XDrag>
+							</x-drag-item>
+						</x-drag-container>
 						<!-- <pre>
 							<code v-html="(formatHighlight as any)(formatJSON(data[index].list))"></code>
 						</pre> -->
 					</div>
-				</XDragItem>
-			</XDrag>
-		</XMultiContainer>
+				</x-drag-item>
+			</x-drag-container>
+		</x-drag-controller>
 	</div>
 </template>
 

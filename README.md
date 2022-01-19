@@ -13,3 +13,54 @@ The inspiration of this component was come from [react-beautiful-dnd](https://gi
 * Highly interactive
 
 ## Currently Supported Features
+* Vertical lists ↕
+* Horizontal lists ↔
+* Movement between lists (▤ ↔ ▤)
+* Nested lists
+
+## Get Start
+
+### Installation
+```shell
+npm i x-drag
+```
+
+### Full Import
+```js
+import XDrag from 'x-drag'
+import 'x-drag/dist/style.css'
+
+Vue.use(XDrag)
+```
+
+### On-demand Import
+```js
+import { reactive } from 'vue
+import { XDragContainer, XDragItem } from 'x-drag'
+
+const arr = reactive(Array.form({length: 5}).map((_, index) => index + 1))
+```
+
+### Usage
+#### Basic Use
+```html
+<template>
+  <x-drag-container v-model="arr">
+    <x-drag-item v-for="(item, index) in arr" :key="item" :item-index="index">
+      {{ item }}
+    </x-drag-item>
+  </x-drag-container>
+</template>
+```
+
+### Props
+#### `XDragContainer`
+| prop | type | description | default |
+| ---- | ---- | ---- | ---- |
+| modelValue | any[] | binding value | - |
+| activeClass | string | css class for dragging item | - |
+| appendTo | string of css selector | the container where the dragging item append to | #app |
+
+#### `XDragItem`
+| prop | type | description |
+| ---- | ---- | ---- |

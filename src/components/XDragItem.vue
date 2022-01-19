@@ -17,7 +17,7 @@
 <script lang="ts" setup>
 import { ComponentInternalInstance, inject, nextTick, Ref, ref, watch } from 'vue';
 import { handleSortFunc, setSrcFunc } from '../drag';
-import { XDragProps } from './XDrag.vue';
+import { XDragProps } from './XDragContainer.vue';
 
 const props = defineProps<{ itemIndex: number; identityClass?: string }>();
 const dragItem = ref<HTMLLIElement>();
@@ -60,6 +60,7 @@ const onDragStart = (e: DragEvent) => {
 };
 
 const onDrag = (e: DragEvent) => {
+	e.dataTransfer!.setData('infoName', ' ');
 	if (cloneNode) {
 		const { clientX, clientY } = e;
 		if (clientX && clientY) {

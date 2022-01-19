@@ -3,7 +3,8 @@
 	"version": "0.0.1",
 	"author": "Shihao Xiong",
 	"files": [
-		"dist"
+		"dist",
+		"src/assets/demo.gif"
 	],
 	"keywords": [
 		"drap",
