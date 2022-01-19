@@ -2,9 +2,9 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import { watch } from 'vue';
-import XDragContainer from './components/XDragContainer.vue';
-import XDragItem from './components/XDragItem.vue';
-import XDragController from './components/XDragController.vue';
+// import XDragContainer from './components/XDragContainer';
+// import XDragItem from './components/XdragItem';
+// import XDragController from './components/XDragController';
 import data from './demo';
 
 watch(

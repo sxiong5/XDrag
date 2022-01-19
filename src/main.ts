@@ -1,4 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
+import xDrag from './export';
 
-createApp(App).mount('#app');
+const app = createApp(App);
+
+app.use(xDrag).mount('#app');

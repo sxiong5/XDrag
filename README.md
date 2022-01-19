@@ -1,5 +1,5 @@
-<h1 align="center">XDrag</h1>
-<p align="center">A <strong>highly interactive draggable</strong> component based on <code><a href="https://v3.vuejs.org/">Vue 3</a></code></p>
+<h1 align="center">xDrag</h1>
+<p align="center">An <strong>interactive draggable</strong> component based on <code><a href="https://v3.vuejs.org/">Vue 3</a></code></p>
 
 ![demo](./src/assets/demo.gif)
 <p align="center"><a href="#">Demos are here!!</a></p>

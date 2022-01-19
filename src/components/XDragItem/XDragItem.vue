@@ -16,8 +16,8 @@
 
 <script lang="ts" setup>
 import { ComponentInternalInstance, inject, nextTick, Ref, ref, watch } from 'vue';
-import { handleSortFunc, setSrcFunc } from '../drag';
-import { XDragProps } from './XDragContainer.vue';
+import { handleSortFunc, setSrcFunc } from '../../drag';
+import { XDragProps } from '../XDragContainer/XDragContainer.vue';
 
 const props = defineProps<{ itemIndex: number; identityClass?: string }>();
 const dragItem = ref<HTMLLIElement>();

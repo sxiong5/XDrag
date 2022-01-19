@@ -6,7 +6,7 @@
 
 <script lang="ts" setup>
 import { provide, ref } from 'vue';
-import { XDragRecord } from '../drag';
+import { XDragRecord } from '../../drag';
 
 const src = ref<XDragRecord | null>(null);
 provide('src', src);

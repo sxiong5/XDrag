@@ -1,13 +1,14 @@
-import XDrag from './components/XDrag.vue';
-import XDragItem from './components/XDragItem.vue';
-import XMultiContainer from './components/XMultiContainer.vue';
+import { App, DefineComponent } from 'vue';
+import XDragContainer from './components/XDragContainer/XDragContainer.vue';
+import XDragItem from './components/XDragItem/XDragItem.vue';
+import XDragController from './components/XDragController/XDragController.vue';
 
-const components = [XDrag, XDragItem, XMultiContainer];
+const components = { XDragContainer, XDragItem, XDragController };
 
-const install = function (App: any) {
-	components.forEach(component => {
-		App.component(component.name, component);
+const install = function (app: App) {
+	Object.keys(components).forEach(name => {
+		app.component(name, (<any>components)[name]);
 	});
 };
 
-export { XDrag, XDragItem, XMultiContainer, install };
+export default { ...components, install };

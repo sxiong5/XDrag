@@ -14,7 +14,7 @@
  * @event onDragEnd trigger when drag ended
  */
 import { ComponentInternalInstance, getCurrentInstance, inject, nextTick, provide, Ref, ref } from 'vue';
-import { XDragRecord, setSrcFunc } from '../drag';
+import { XDragRecord, setSrcFunc } from '../../drag';
 export interface XDragProps {
 	modelValue: any[];
 	activeClass?: string;
