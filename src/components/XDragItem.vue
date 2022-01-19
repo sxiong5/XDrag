@@ -33,15 +33,16 @@ const emits = inject<{ (e: 'onDragEnd', value: any[]): void }>('emits')!;
 const identityClass = inject<Ref<string | null>>('identityClass');
 const setIdentityClass = inject<(className: string) => void>('setIdentityClass');
 const container = _props.appendTo ? document.querySelector(_props.appendTo)! : document.body;
+const img: HTMLImageElement = new Image();
+img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
 watch(newNode, newVal => {
 	opacity.value = newVal === dragItem.value ? 0 : 1;
 });
 
 const onDragStart = (e: DragEvent) => {
+	e.dataTransfer!.setData('infoName', ' ');
 	const { offsetX, offsetY } = e;
-	const img: HTMLImageElement = new Image();
-	img.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' %3E%3Cpath /%3E%3C/svg%3E";
 	e.dataTransfer!.setDragImage(img, 0, 0);
 	startPos.value = [offsetX, offsetY];
 
@@ -60,7 +61,6 @@ const onDragStart = (e: DragEvent) => {
 };
 
 const onDrag = (e: DragEvent) => {
-	e.dataTransfer!.setData('infoName', ' ');
 	if (cloneNode) {
 		const { clientX, clientY } = e;
 		if (clientX && clientY) {
