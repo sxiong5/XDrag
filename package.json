@@ -1,8 +1,34 @@
 {
 	"name": "x-drag",
-	"version": "0.0.0",
+	"version": "0.0.1",
+	"author": "Shihao Xiong",
+	"files": [
+		"dist"
+	],
+	"keywords": [
+		"drap",
+		"drop",
+		"vue"
+	],
+	"main": "./dist/x-drag.umd.ts",
+	"module": "./dist/x-drag.es.ts",
+	"exports": {
+		".": {
+			"import": "./dist/x-drag.es.ts",
+			"require": "./dist/x-drag.umd.ts"
+		},
+		"./dist/style.css": {
+			"import": "./dist/style.css",
+			"require": "./dist/style.css"
+		}
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sxiong5/XDrag"
+	},
+	"homepage": "https://github.com/sxiong5/XDrag",
 	"scripts": {
-		"dev": "vite",
+		"dev": "vite --host",
 		"start": "npm run dev",
 		"build": "vue-tsc --noEmit && vite build",
 		"preview": "vite preview"
@@ -11,6 +37,7 @@
 		"vue": "^3.2.25"
 	},
 	"devDependencies": {
+		"@types/node": "^17.0.10",
 		"@vitejs/plugin-vue": "^2.0.0",
 		"typescript": "^4.4.4",
 		"vite": "^2.7.2",

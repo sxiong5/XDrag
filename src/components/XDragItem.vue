@@ -4,11 +4,11 @@
 		ref="dragItem"
 		class="x-drag-item"
 		:style="{ opacity }"
-		@dragstart="onDragStart"
-		@drag="onDrag"
+		@dragstart.stop="onDragStart"
+		@drag.stop="onDrag"
 		@dragover="e => e.preventDefault()"
-		@dragend="onDragEnd"
-		@dragenter="onDragEnter"
+		@dragend.stop="onDragEnd"
+		@dragenter.stop="onDragEnter"
 	>
 		<slot />
 	</li>
@@ -19,7 +19,7 @@ import { ComponentInternalInstance, inject, nextTick, Ref, ref, watch } from 'vu
 import { handleSortFunc, setSrcFunc } from '../drag';
 import { XDragProps } from './XDrag.vue';
 
-const props = defineProps<{ itemIndex: number }>();
+const props = defineProps<{ itemIndex: number; identityClass?: string }>();
 const dragItem = ref<HTMLLIElement>();
 let cloneNode: HTMLLIElement;
 const newNode = inject<Ref<HTMLLIElement | null>>('newNode')!;
@@ -30,6 +30,8 @@ const dragIns = inject<ComponentInternalInstance>('dragIns')!;
 const handleSort = inject<handleSortFunc>('handleSort')!;
 const _props = inject<XDragProps>('props')!;
 const emits = inject<{ (e: 'onDragEnd', value: any[]): void }>('emits')!;
+const identityClass = inject<Ref<string | null>>('identityClass');
+const setIdentityClass = inject<(className: string) => void>('setIdentityClass');
 const container = _props.appendTo ? document.querySelector(_props.appendTo)! : document.body;
 
 watch(newNode, newVal => {
@@ -49,6 +51,9 @@ const onDragStart = (e: DragEvent) => {
 	_props.activeClass && cloneNode.classList.add(_props.activeClass);
 	cloneNode.classList.remove('x-drag-item');
 	cloneNode.style.transform = `translate(${left}px, ${top}px)`;
+
+	setIdentityClass && props.identityClass && setIdentityClass(props.identityClass);
+	// props.identityClass && cloneNode.setAttribute('data-identity-class', props.identityClass);
 	opacity.value = 0;
 	setSrc({ instance: dragIns, index: props.itemIndex });
 	container.appendChild(cloneNode);
@@ -66,7 +71,11 @@ const onDrag = (e: DragEvent) => {
 
 const onDragEnter = (e: DragEvent) => {
 	e.preventDefault();
-	handleSort({ instance: dragIns, index: props.itemIndex });
+	if (identityClass && props.identityClass) {
+		identityClass.value === props.identityClass && handleSort({ instance: dragIns, index: props.itemIndex });
+	} else {
+		handleSort({ instance: dragIns, index: props.itemIndex });
+	}
 };
 
 const onDragEnd = () => {

@@ -15,4 +15,7 @@ provide('setSrc', (val: XDragRecord | null) => (src.value = val));
 const newNode = ref<HTMLLIElement | null>(null);
 provide('newNode', newNode);
 provide('setNewNode', (node: HTMLLIElement | null) => (newNode.value = node));
+const identityClass = ref<string | null>(null);
+provide('identityClass', identityClass);
+provide('setIdentityClass', (className: string) => (identityClass.value = className));
 </script>

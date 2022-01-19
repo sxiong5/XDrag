@@ -1,6 +1,6 @@
 <template>
 	<transition-group tag="ul" name="x-drag" class="x-drag-container">
-		<component ref="slot" :is="$slots.default && $slots.default()[0]" />
+		<component :is="$slots.default && $slots.default()[0]" />
 	</transition-group>
 </template>
 

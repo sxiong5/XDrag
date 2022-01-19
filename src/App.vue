@@ -18,20 +18,39 @@ watch(
 
 <template>
 	<div class="wrapper">
-		<p>Open the Console to see the data</p>
-		<XMultiContainer class="mul-container">
-			<div v-for="(dataItem, index) in data" :key="dataItem.title" :item-index="index">
-				<h3>{{ dataItem.title }}</h3>
-				<XDrag v-model="data[index].list">
-					<XDragItem class="drag-item" v-for="(item, index) in dataItem.list" :key="item.title" :item-index="index">
-						<img class="avatar" :src="item.avatar" />
-						<div class="item-content">
-							<div>{{ item.title }}</div>
-							<p>{{ item.content }}</p>
-						</div>
-					</XDragItem>
-				</XDrag>
-			</div>
+		<p class="title"><img src="./assets/logo.png" /> Bulid with Vue 3</p>
+		<p>Open the Console to see changes in data</p>
+		<XMultiContainer>
+			<XDrag v-model="data" class="mul-container">
+				<XDragItem
+					v-for="(dataItem, index) in data"
+					:key="dataItem.title"
+					:item-index="index"
+					identity-class="outer-item"
+				>
+					<div>
+						<h3>{{ dataItem.title }}</h3>
+						<XDrag v-model="data[index].list">
+							<XDragItem
+								class="drag-item"
+								v-for="(item, index) in dataItem.list"
+								:key="item.title"
+								:item-index="index"
+								identity-class="inner-item"
+							>
+								<img class="avatar" :src="item.avatar" />
+								<div class="item-content">
+									<div>{{ item.title }}</div>
+									<p>{{ item.content }}</p>
+								</div>
+							</XDragItem>
+						</XDrag>
+						<!-- <pre>
+							<code v-html="(formatHighlight as any)(formatJSON(data[index].list))"></code>
+						</pre> -->
+					</div>
+				</XDragItem>
+			</XDrag>
 		</XMultiContainer>
 	</div>
 </template>
@@ -48,6 +67,16 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;
 }
+.title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #3fb883;
+	font-weight: bold;
+}
+.title > img {
+	height: 50px;
+}
 .wrapper {
 	width: 100%;
 	height: 100vh;
@@ -59,8 +88,9 @@ body {
 .mul-container {
 	display: flex;
 	flex-flow: row nowrap;
+	justify-content: center;
 }
-.mul-container > div {
+.mul-container > * {
 	margin: 0 5px;
 }
 .drag-item {
@@ -91,5 +121,9 @@ body {
 .json-container {
 	width: 300px;
 	white-space: pre;
+}
+pre {
+	width: 300px;
+	text-align: left;
 }
 </style>
